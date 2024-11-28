@@ -1,0 +1,13 @@
+---
+Checks: '-*,
+         clang-*,
+         bugprone-*,
+         cppcoreguidelines-*,
+         modernize-*,
+         performance-*,
+         -cppcoreguidelines-pro-type-vararg,
+         -modernize-use-trailing-return-type,
+         -bugprone-exception-escape'
+HeaderFilterRegex: '.*'
+WarningsAsErrors: '*'                          # set to '*' to activate
+FormatStyle: file
