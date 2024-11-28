@@ -26,12 +26,3 @@ add_executable(mydoctest)
 target_sources(mydoctest PRIVATE dtest.cpp)
 target_link_libraries(mydoctest PRIVATE doctest::doctest)
 doctest_discover_tests(mydoctest WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-
-add_executable(testbla)
-target_sources(testbla PRIVATE test_bla.cpp)
-target_include_directories(testbla
-    PRIVATE
-        "${CMAKE_SOURCE_DIR}/src/bla/include"
-)
-target_link_libraries(testbla PRIVATE doctest::doctest bla)
-doctest_discover_tests(testbla WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})

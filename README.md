@@ -1,4 +1,7 @@
-# C++ CMake Template
+# Advent of Code
+
+Assuming that AoC is a nail, lets try the heaviest hammer I can find (C++).
+
 ## HOWTOs
 Build with:
 ```bash
@@ -34,7 +37,7 @@ ctest --output-on-failure
 ### Run Code Coverage Test
 - Requires `gcov`, `lcov` and `genhtml` to be available
 ```bash
-cmake -G "Ninja" -DCODE_COVERAGE=on ../cppcmaketemplate
+cmake -G "Ninja" -DCODE_COVERAGE=on ../AdventOfCode
 cmake --build .
 ninja cov
 firefox coverage/index.html

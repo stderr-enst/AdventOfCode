@@ -1,2 +1,2 @@
-add_subdirectory(bla)
-add_subdirectory(main)
+add_subdirectory(AoC2023)
+add_subdirectory(AoC2024)
