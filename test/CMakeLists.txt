@@ -22,7 +22,27 @@ get_property(DOCTEST_INCLUDE_DIR TARGET doctest PROPERTY INTERFACE_INCLUDE_DIREC
 include_directories(SYSTEM ${DOCTEST_INCLUDE_DIR})
 
 # Building tests
-add_executable(mydoctest)
-target_sources(mydoctest PRIVATE dtest.cpp)
-target_link_libraries(mydoctest PRIVATE doctest::doctest)
-doctest_discover_tests(mydoctest WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+add_executable(doctest_main)
+target_sources(doctest_main
+  PRIVATE
+    doctest_main.cpp
+    dtest.cpp
+)
+target_include_directories(doctest_main
+  PRIVATE
+)
+target_link_libraries(doctest_main
+  PRIVATE
+    doctest::doctest
+)
+doctest_discover_tests(doctest_main WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
+if("${COMPILE_WITH_COVERAGE}")
+  setup_target_for_coverage_lcov(
+      NAME coverage
+      EXECUTABLE "${CMAKE_CTEST_COMMAND}" "--verbose"
+      DEPENDENCIES
+        doctest_main
+      #EXCLUDE "/usr/*" "*/_deps/*" "test"
+  )
+endif()

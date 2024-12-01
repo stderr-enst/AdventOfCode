@@ -21,10 +21,10 @@ else()
 endif()
 
 # Enable code coverage in Debug build
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+option(COMPILE_WITH_COVERAGE  "Enable code coverage in debug builds" OFF)
+if("${COMPILE_WITH_COVERAGE}")
   set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
-  include(coverage)
-  add_coverage_target()
+  include(CodeCoverage)
 endif()
 
 # Executables and internal libraries

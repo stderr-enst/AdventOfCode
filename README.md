@@ -37,12 +37,12 @@ ctest --output-on-failure
 ### Run Code Coverage Test
 - Requires `gcov`, `lcov` and `genhtml` to be available
 ```bash
-cmake -G "Ninja" -DCODE_COVERAGE=on ../AdventOfCode
+cmake -G "Ninja" -DCOMPILE_WITH_COVERAGE=On -DCMAKE_BUILD_TYPE=Debug ../AdventOfCode
 cmake --build .
 ninja cov
 firefox coverage/index.html
 # or independent
-ctest covearge
+ctest -T covearge
 ```
 
 
