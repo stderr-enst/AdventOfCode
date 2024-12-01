@@ -1,4 +1,8 @@
 #include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <string>
+
 #include "aoc24_1.h"
 
 std::vector<int>
@@ -15,4 +19,31 @@ calculateDistances(const std::vector<std::pair<int,int>>& preparedList) {
         });
     
     return distances;
+}
+
+std::pair<std::vector<int>, std::vector<int>>
+readPairsFromFile(const std::filesystem::path& inputfile){
+    std::vector<int> left = {};
+    std::vector<int> right = {};
+    constexpr int expectedNumbeOfLines = 1000;
+    left.reserve(expectedNumbeOfLines);
+    right.reserve(expectedNumbeOfLines);
+
+    std::string line = {""};
+    int num1 = 0;
+    int num2 = 0;
+    std::ifstream file(inputfile);
+    if (!file.is_open())
+        throw std::runtime_error("Failed to open file");
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        if (!(iss >> num1 >> num2)) {
+            throw std::runtime_error("Invalid input format");
+        }
+        left.push_back(num1);
+        right.push_back(num2);
+    }
+
+    return std::make_pair(left, right);
 }

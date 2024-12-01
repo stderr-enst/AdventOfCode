@@ -4,6 +4,7 @@
 #include <utility>
 #include <algorithm>
 #include <numeric>
+#include <filesystem>
 
 template<typename T>
 std::vector<std::pair<T,T>>
@@ -31,5 +32,8 @@ calculateDistances(const std::vector<std::pair<int,int>>& preparedList);
 inline int calculateTotalDistance(const std::vector<int>& distances) {
     return std::accumulate(distances.begin(), distances.end(), 0);
 }
+
+std::pair<std::vector<int>, std::vector<int>>
+readPairsFromFile(const std::filesystem::path& inputfile);
 
 #endif // AOC24_1_H
