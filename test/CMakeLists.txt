@@ -27,13 +27,16 @@ target_sources(doctest_main
   PRIVATE
     doctest_main.cpp
     dtest.cpp
+    ${CMAKE_SOURCE_DIR}/src/AoC2024/1/test/test_aoc24_1a.cpp
 )
 target_include_directories(doctest_main
   PRIVATE
+    "${CMAKE_SOURCE_DIR}/src/AoC2024/1"
 )
 target_link_libraries(doctest_main
   PRIVATE
     doctest::doctest
+    aoc24_1
 )
 doctest_discover_tests(doctest_main WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
@@ -43,6 +46,6 @@ if("${COMPILE_WITH_COVERAGE}")
       EXECUTABLE "${CMAKE_CTEST_COMMAND}" "--verbose"
       DEPENDENCIES
         doctest_main
-      #EXCLUDE "/usr/*" "*/_deps/*" "test"
+      EXCLUDE "/usr/*"# "*/_deps/*" "test"
   )
 endif()
