@@ -16,5 +16,9 @@ int main(){
 
     std::cout << "Total distance = " << totalDistance << '\n';
 
+    auto similarity = calculateSimilarityScore(inputLists);
+
+    std::cout << "Similarity score = " << similarity << '\n';
+
     return 0;
 }

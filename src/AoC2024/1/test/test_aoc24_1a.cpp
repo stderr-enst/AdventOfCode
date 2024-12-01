@@ -66,3 +66,13 @@ TEST_CASE("Total distance") {
     auto totaldist = calculateTotalDistance(distances);
     CHECK(totaldist == 11); // NOLINT(cppcoreguidelines-avoid-magic-numbers)
 }
+
+TEST_CASE("Calculate similarity score") {
+    std::vector<int> left  = {3, 4, 2, 1, 3, 3};
+    std::vector<int> right = {4, 3, 5, 3, 9, 3}; // NOLINT(cppcoreguidelines-avoid-magic-numbers)
+    auto inputList = std::make_pair(left, right);
+
+    auto similarity = calculateSimilarityScore(inputList);
+
+    CHECK(similarity == 31);
+}

@@ -1,5 +1,5 @@
 # AoC 2024 - 1
-## Task:
+## Task A:
 - Empty list of locations to check, fill it
 - Start at the office
     - No Chief Historian there
@@ -9,7 +9,7 @@
     - Each creating their own list
 - What is the total distance between both lists?
 
-## Given
+### Given
 - Comparing the two lists side by side (input)
     - Lists aren't similar
 - Example:
@@ -33,3 +33,11 @@
     - Third smallest in both is 3, distance 0
     - ...
 - Total distance is defined as adding up all distances
+
+## Task B
+- Calculate a total similarity score:
+    - Add up each number in the left list
+    - after multiplying it by the number of times that number appears in the right list
+- E.g., The first number in the left list 3 appears 3x in the right list
+    - => similarity score increases by 3 * 3 = 9
+    - 4 appears 1 times => similarity increases by 4

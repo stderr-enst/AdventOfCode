@@ -36,4 +36,6 @@ inline int calculateTotalDistance(const std::vector<int>& distances) {
 std::pair<std::vector<int>, std::vector<int>>
 readPairsFromFile(const std::filesystem::path& inputfile);
 
+int calculateSimilarityScore(const std::pair<std::vector<int>, std::vector<int>>& inputList);
+
 #endif // AOC24_1_H

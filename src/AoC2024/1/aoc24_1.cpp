@@ -47,3 +47,20 @@ readPairsFromFile(const std::filesystem::path& inputfile){
 
     return std::make_pair(left, right);
 }
+
+int calculateSimilarityScore(const std::pair<std::vector<int>, std::vector<int>>& inputList) {
+    const auto& left = std::get<0>(inputList);
+    const auto& right = std::get<1>(inputList);
+
+    std::vector<int> scores = {};
+    std::for_each(left.begin(), left.end(), [&](int i){
+        // NOLINTNEXTLINE
+        int count = std::count_if(right.begin(), right.end(), [i](int j){ return i == j; });
+        int localScore = i*count;
+        scores.push_back(localScore);
+    });
+
+    auto sum = std::accumulate(scores.begin(), scores.end(), 0);
+
+    return sum;
+}
