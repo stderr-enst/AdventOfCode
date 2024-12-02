@@ -1,54 +1,70 @@
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-#include <string>
-
 #include "aoc24_1.h"
 
-std::vector<int>
-calculateDistances(const std::vector<std::pair<int,int>>& preparedList) {
+pairListType prepareListOfPairs(const inputListType& inputLists) {
+    auto left = std::get<0>(inputLists);
+    auto right = std::get<1>(inputLists);
+    const bool listIsEmpty = (left.size() == 0) or (right.size() == 0);
+    const bool unequalLength = left.size() != right.size();
+    if(listIsEmpty || unequalLength)
+        return {};
+
+    std::sort(left.begin(), left.end());
+    std::sort(right.begin(), right.end());
+
+    pairListType preparedList = {};
+    for(unsigned int i = 0; i < left.size(); i++)
+        preparedList.emplace_back(left.at(i), right.at(i));
+    
+    return std::move(preparedList);
+}
+
+std::vector<int> calculateDistances(const pairListType& preparedList) {
     std::vector<int> distances = {};
+    constexpr int expectedNumbeOfLines = 1000;
+    distances.reserve(expectedNumbeOfLines);
 
     const bool listIsNotEmpty = preparedList.size() > 0;
-    if(listIsNotEmpty)
-        std::for_each(preparedList.begin(), preparedList.end(), [&](const std::pair<int,int>& pair){
+    if(listIsNotEmpty) {
+        auto calcSingleDistance = [&](const std::pair<int,int>& pair){
             int left = std::get<0>(pair);
             int right = std::get<1>(pair);
             int distance = std::abs(left - right);
-            distances.push_back(distance);
-        });
+            distances.emplace_back(distance);
+        };
+        std::for_each(preparedList.begin(), preparedList.end(), calcSingleDistance);
+    }
     
-    return distances;
+    return std::move(distances);
 }
 
-std::pair<std::vector<int>, std::vector<int>>
-readPairsFromFile(const std::filesystem::path& inputfile){
-    std::vector<int> left = {};
-    std::vector<int> right = {};
+inputListType readPairsFromFile(const std::filesystem::path& inputfile){
+    std::vector<int> left{};
+    std::vector<int> right{};
     constexpr int expectedNumbeOfLines = 1000;
     left.reserve(expectedNumbeOfLines);
     right.reserve(expectedNumbeOfLines);
 
     std::string line = {""};
-    int num1 = 0;
-    int num2 = 0;
     std::ifstream file(inputfile);
-    if (!file.is_open())
+    if (!file.is_open()) {
         throw std::runtime_error("Failed to open file");
+    }
 
     while (std::getline(file, line)) {
         std::istringstream iss(line);
+        int num1 = 0;
+        int num2 = 0;
         if (!(iss >> num1 >> num2)) {
             throw std::runtime_error("Invalid input format");
         }
-        left.push_back(num1);
-        right.push_back(num2);
+        left.emplace_back(num1);
+        right.emplace_back(num2);
     }
 
     return std::make_pair(left, right);
 }
 
-int calculateSimilarityScore(const std::pair<std::vector<int>, std::vector<int>>& inputList) {
+int calculateSimilarityScore(const inputListType& inputList) {
     const auto& left = std::get<0>(inputList);
     const auto& right = std::get<1>(inputList);
 
@@ -57,7 +73,7 @@ int calculateSimilarityScore(const std::pair<std::vector<int>, std::vector<int>>
         // NOLINTNEXTLINE
         int count = std::count_if(right.begin(), right.end(), [i](int j){ return i == j; });
         int localScore = i*count;
-        scores.push_back(localScore);
+        scores.emplace_back(localScore);
     });
 
     auto sum = std::accumulate(scores.begin(), scores.end(), 0);

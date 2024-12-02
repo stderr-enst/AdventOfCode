@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "aoc24_1.h"
+#include <iostream>
 
 int main(){
     std::filesystem::path inputfile = "./input";

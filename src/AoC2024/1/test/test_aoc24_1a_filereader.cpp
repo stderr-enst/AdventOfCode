@@ -1,8 +1,7 @@
+#include "aoc24_1.h"
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
-
-#include <filesystem>
-#include "aoc24_1.h"
 
 TEST_CASE("Read input file") {
     std::filesystem::path inputfile = "./input";
