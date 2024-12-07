@@ -1,5 +1,11 @@
 #include "aoc24_1.h"
 
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <utility>
+
 pairListType prepareListOfPairs(const inputListType& inputLists) {
     auto left = std::get<0>(inputLists);
     auto right = std::get<1>(inputLists);
@@ -14,8 +20,8 @@ pairListType prepareListOfPairs(const inputListType& inputLists) {
     pairListType preparedList = {};
     for(unsigned int i = 0; i < left.size(); i++)
         preparedList.emplace_back(left.at(i), right.at(i));
-    
-    return std::move(preparedList);
+
+    return preparedList;
 }
 
 std::vector<int> calculateDistances(const pairListType& preparedList) {
@@ -33,8 +39,8 @@ std::vector<int> calculateDistances(const pairListType& preparedList) {
         };
         std::for_each(preparedList.begin(), preparedList.end(), calcSingleDistance);
     }
-    
-    return std::move(distances);
+
+    return distances;
 }
 
 inputListType readPairsFromFile(const std::filesystem::path& inputfile){

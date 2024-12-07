@@ -3,6 +3,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
 
+#include <filesystem>
+
 TEST_CASE("Read input file") {
     std::filesystem::path inputfile = "./input";
     REQUIRE(std::filesystem::exists(inputfile));

@@ -1,4 +1,5 @@
 #include "aoc24_1.h"
+
 #include <iostream>
 
 int main(){

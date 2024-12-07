@@ -1,12 +1,7 @@
 #ifndef AOC24_1_H
 #define AOC24_1_H
-#include <algorithm>
 #include <filesystem>
-#include <fstream>
 #include <numeric>
-#include <sstream>
-#include <string>
-#include <utility>
 #include <vector>
 
 using inputListType = std::pair<std::vector<int>, std::vector<int>>;
