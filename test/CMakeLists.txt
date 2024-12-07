@@ -27,15 +27,18 @@ target_sources(doctest_main
   PRIVATE
     doctest_main.cpp
     ${CMAKE_SOURCE_DIR}/src/AoC2024/1/test/test_aoc24_1a.cpp
+    ${CMAKE_SOURCE_DIR}/src/AoC2024/2/test/test_aoc24_2.cpp
 )
 target_include_directories(doctest_main
   PRIVATE
     "${CMAKE_SOURCE_DIR}/src/AoC2024/1"
+    "${CMAKE_SOURCE_DIR}/src/AoC2024/2"
 )
 target_link_libraries(doctest_main
   PRIVATE
     doctest::doctest
     aoc24_1
+    aoc24_2
 )
 doctest_discover_tests(doctest_main WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
@@ -55,6 +58,22 @@ target_link_libraries(aoc24_1a_filereader
 )
 doctest_discover_tests(aoc24_1a_filereader WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/src/AoC2024/1/test")
 
+add_executable(aoc24_2_filereader)
+target_sources(aoc24_2_filereader
+  PRIVATE
+    ${CMAKE_SOURCE_DIR}/src/AoC2024/2/test/test_aoc24_2_filereader.cpp
+)
+target_include_directories(aoc24_2_filereader
+  PRIVATE
+    "${CMAKE_SOURCE_DIR}/src/AoC2024/2"
+)
+target_link_libraries(aoc24_2_filereader
+  PRIVATE
+    doctest::doctest
+    aoc24_2
+)
+doctest_discover_tests(aoc24_2_filereader WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/src/AoC2024/2/test")
+
 if("${COMPILE_WITH_COVERAGE}")
   setup_target_for_coverage_lcov(
       NAME coverage
@@ -62,6 +81,7 @@ if("${COMPILE_WITH_COVERAGE}")
       DEPENDENCIES
         doctest_main
         aoc24_1a_filereader
+        aoc24_2_filereader
       EXCLUDE "/usr/*"# "*/_deps/*" "test"
   )
 endif()
