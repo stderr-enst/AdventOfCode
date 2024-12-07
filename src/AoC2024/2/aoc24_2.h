@@ -1,13 +1,6 @@
 #ifndef AOC24_2_H
 #define AOC24_2_H
-#include <algorithm>
 #include <filesystem>
-#include <fstream>
-#include <functional>
-#include <iterator>
-#include <numeric>
-#include <sstream>
-#include <string>
 #include <vector>
 
 using inputListType = std::vector<std::vector<int>>;

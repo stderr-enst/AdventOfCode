@@ -1,5 +1,13 @@
 #include "aoc24_2.h"
 
+#include <algorithm>
+#include <fstream>
+#include <functional>
+#include <iterator>
+#include <numeric>
+#include <sstream>
+#include <string>
+
 inputListType readFromFile(const std::filesystem::path& inputfile){
     inputListType lines{};
     constexpr int expectedNumbeOfLines = 1000;

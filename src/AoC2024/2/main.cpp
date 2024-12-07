@@ -1,4 +1,6 @@
 #include "aoc24_2.h"
+
+#include <algorithm>
 #include <iostream>
 
 int main(){
