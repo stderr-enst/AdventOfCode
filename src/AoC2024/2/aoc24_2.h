@@ -12,6 +12,6 @@ std::vector<int> calculateSafetyLevel(const std::vector<int>& row);
 
 bool checkRow(const std::vector<int>& row);
 
-bool checkRowWithDampener(const std::vector<int> &row);
+bool checkRowWithDampener(const std::vector<int>& row);
 
-#endif // AOC24_2_H
+#endif  // AOC24_2_H

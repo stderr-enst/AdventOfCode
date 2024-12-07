@@ -33,6 +33,10 @@ Test with:
 ctest --output-on-failure
 ```
 
+### Clang-format
+- Use clang-format as pre-commit hook
+- Formatting style based on google
+- Just for consistency, no strong feelings about the style whatsoever
 
 ### Run Code Coverage Test
 - Requires `gcov`, `lcov` and `genhtml` to be available
